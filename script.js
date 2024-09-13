@@ -48,7 +48,7 @@ function parse_tld(website){
 async function fetch_user_data() {
     
     const res = fetch(USERS_ENDPOINT);
-    const user_map = {}; //object to map tld's to user websites
+    const user_map = {}; //object to map tld of websites to their users
 
     res.then((response) => response.json())
         .then((data) => {
