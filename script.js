@@ -31,16 +31,17 @@ function renderColumn(title, users) {
     const wrapperDiv = document.getElementById('wrapper');
     wrapperDiv.appendChild(columnDiv);
 }
+////////////////////////////////////////////////////////////////////
 
 //function to parse the tld from website url for each user
 function parse_tld(website){
     try{
         // tld should be the last part of a url (part after the last '.')
-        const l = website.split('.');
-        return l[l.length-1];
+        const url_as_list = website.split('.');
+        return "."+url_as_list[url_as_list.length-1];
     }
     catch{
-        console.log("Website URL is given in the wrong format!");
+        console.log("Website url is in the wrong format!");
     }
 }
 
@@ -55,7 +56,7 @@ async function fetch_user_data() {
         
         //iterate through the json data which has entries for individual users
         for (user of data){
-            const website = parse_tld(user.website)  
+            const website = parse_tld(user.website);  
             if (!(website in user_map)){
                 user_map[website] = [user];
             } else{
@@ -65,7 +66,7 @@ async function fetch_user_data() {
         
         //iterate through user_map object and call renderColumn function to render users
         for ([key,value] of Object.entries(user_map)){
-            renderColumn(key,value)
+            renderColumn(key,value);
         }
 
     })
@@ -73,4 +74,5 @@ async function fetch_user_data() {
 
 }
 
-fetch_user_data()
+//call fetch function
+fetch_user_data();
